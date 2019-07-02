@@ -15,6 +15,7 @@
 \usepackage{lipsum}
 \usepackage{setspace}
 \usepackage{tabto}
+\usepackage{bussproofs}
 \onehalfspacing
 \titleformat{\chapter}[hang]{\bf\huge}{\thechapter}{2pc}{}
 
@@ -453,6 +454,22 @@ CallMain ::= start name ( ExpressionSeq )
 \vspace*{3pt}
 
 
+\begin{center}
+\Axiom$\Gamma^\prime\fCenter\Delta,A,A$
+\LeftLabel{Weakening}\RightLabel{}
+\UnaryInf$\lnot A,\Gamma^\prime \fCenter \Delta, A$
+\LeftLabel{.}\RightLabel{\small $\lor$:right}
+\UnaryInf$\lnot A,\lnot A,\Gamma^\prime \fCenter \Delta$
+\LeftLabel{eigenvariable $x$}\RightLabel{$\forall$:right}
+\UnaryInf$\Gamma \fCenter$ $  \Delta$
+\DisplayProof
+\end{center}
+
+\begin{center}
+\Axiom$\fCenter\Gamma^\prime\Delta,A,A$
+\UnaryInf$ \fCenter\Gamma$
+\DisplayProof
+\end{center}
 
 
 \newpage
