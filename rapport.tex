@@ -453,7 +453,98 @@ CallMain ::= start name ( ExpressionSeq )
 \end{verbnobox}
 \vspace*{3pt}
 
+\newpage
+\centerline{\textbf{\Huge Type rules}}
+\vspace*{3pt}
+\vspace*{20pt}
 
+
+\tabto{0cm} {\large \textbf{Binary Operator}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1: T_1 $}
+\AxiomC{$\Gamma \vdash e_2 : T_2$}
+\AxiomC{$T_1 \times T_2 \in dom$ op}
+\AxiomC{$T \in codom$ op}
+\QuaternaryInfC{$\Gamma \vdash e_1 \ op \ e_2 : T $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Unary Operator}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e : T $}
+\AxiomC{$T \in dom$ op}
+\AxiomC{$T' \in codom$ op}
+\TrinaryInfC{$\Gamma \vdash op \ e : T' $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Negate Operator}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e : T $}
+\AxiomC{$T \in dom \ -$}
+\AxiomC{$T' \in codom \ -$}
+\TrinaryInfC{$\Gamma \vdash - \ e : T' $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Condition}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : bool $}
+\AxiomC{$\Gamma \vdash e_2 : T $}
+\AxiomC{$\Gamma \vdash e_3 : T $}
+\TrinaryInfC{$\Gamma \vdash if \ e_1 \ then \ e_2 \ else \ e_3 : T $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Tuple}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : T_1$}
+\AxiomC{$\Gamma \vdash e_2 : T_2 $}
+\AxiomC{$\ldots$}
+\AxiomC{$\Gamma \vdash e_n : T_n $}
+\QuaternaryInfC{$\Gamma \vdash (e_1,e_2,\ldots,e_n) : T_1 \times T_2 \times \ldots \times T_n)$}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Identifier}}
+\begin{prooftree}
+\AxiomC{$ x : T \in \Gamma$}
+\UnaryInfC{$\Gamma \vdash x : T$}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Function Call with return}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : T_2 $}
+\AxiomC{$\Gamma \vdash e_2 : T_1 \rightarrow T_2 $}
+\AxiomC{$\Gamma \vdash e_3 : T_1 $}
+\TrinaryInfC{$\Gamma \vdash e_1 = e_2 (e_3) : T_2 $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Function Call without return}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : T_1 \rightarrow void$}
+\AxiomC{$\Gamma \vdash e_2 : T_1 $}
+\BinaryInfC{$\Gamma \vdash e_1(e_2) : void $}
+\end{prooftree}
+
+\newpage
+
+\tabto{0cm} {\large \textbf{While}}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : bool$}
+\AxiomC{$\Gamma \vdash e_2 : T $}
+\BinaryInfC{$\Gamma \vdash while(e_1) \ \{ e_2 \} : T $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Return void}}
+\begin{prooftree}
+\AxiomC{$ $}
+\UnaryInfC{$\Gamma \vdash return : void $}
+\end{prooftree}
+
+\tabto{0cm} {\large \textbf{Return Expression }}
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e : T$}
+\UnaryInfC{$\Gamma \vdash return \ e : T $}
+\end{prooftree}
+
+\vspace*{3pt}
+\vspace*{20pt}
 \begin{center}
 \Axiom$\Gamma^\prime\fCenter\Delta,A,A$
 \LeftLabel{Weakening}\RightLabel{}
@@ -464,14 +555,6 @@ CallMain ::= start name ( ExpressionSeq )
 \UnaryInf$\Gamma \fCenter$ $  \Delta$
 \DisplayProof
 \end{center}
-
-\begin{center}
-\Axiom$\fCenter\Gamma^\prime\Delta,A,A$
-\UnaryInf$ \fCenter\Gamma$
-\DisplayProof
-\end{center}
-
-
 \newpage
 \centerline{\textbf{\Huge Examples}}
 \vspace*{3pt}
