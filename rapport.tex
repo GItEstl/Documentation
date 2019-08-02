@@ -112,9 +112,9 @@ tuples, local and global variables, functions declaration and call, different bi
 \begin{Verbatim}[fontfamily=textsf]
 Program ::= TypeDecla Program
             | FuncDecla Program
-            | VariableDecla Program
+            | VariableDeclaGlobal Program
             | FuncDecla CallMain
-            | VariableDecla CallMain
+            | VariableDeclaGlobal CallMain
 \end{Verbatim}
 \vspace*{3pt}
 
@@ -135,6 +135,11 @@ Parameters ::= Typ identifier | Typ identifier , Parameters
 
 \begin{verbnobox}[\normalfont]
 Body ::= { Instruction } | { def VariableDeclas in Instruction }
+\end{verbnobox}
+\vspace*{3pt}
+
+\begin{verbnobox}[\normalfont]
+VariableDeclaGlobal ::= Typ identifier = Value | Typ identifier = (ValueSeq)
 \end{verbnobox}
 \vspace*{3pt}
 
