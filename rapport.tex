@@ -62,7 +62,7 @@
 
  \vfill
  \vspace*{\stretch{10}}
-\centerline{\large June 2019}
+\centerline{\large June-August 2019}
 \vspace*{\stretch{1}}
 
 
@@ -189,8 +189,6 @@ Choices ::= Prefix -> { Instruction } Choices | Prefix -> { Instruction }
 Prefix ::= | tau
          | | send ( identifier , Expression )
          | | Expression = receive ( identifier )
-         | | Expression = newChan()
-         | | spawn name ( ExpressionSeq )
 \end{verbnobox}
 \vspace*{3pt}
 
@@ -680,13 +678,13 @@ Finally, we have to check that the function used in the start function is declar
 \tabto{0cm} {\large \textbf{Sequence of Instructions}}
 \begin{prooftree}
 \AxiomC{$ $}
-\UnaryInfC{$G;S;E \vdash i ; seqi \rightarrow_{\beta} G;S;(noop;seqi)::E \vdash i$}
+\UnaryInfC{$G;S;E \vdash i ; seqi \rightarrow_{\beta} G;S;(seqi)::E \vdash i$}
 \end{prooftree}
 
 \tabto{0cm} {\large \textbf{Noop}}
 \begin{prooftree}
 \AxiomC{$ $}
-\UnaryInfC{$G;S;(noop;seqi)::E \vdash noop \rightarrow_{\beta} G;S;E \vdash seqi$}
+\UnaryInfC{$G;S;(seqi)::E \vdash noop \rightarrow_{\beta} G;S;E \vdash seqi$}
 \end{prooftree}
 
 \tabto{0cm} $\Delta = G;S;E$
@@ -713,7 +711,7 @@ Finally, we have to check that the function used in the start function is declar
 \tabto{0cm} {\large \textbf{Choose Instruction}}
 \begin{prooftree}
 \AxiomC{$ $}
-\UnaryInfC{$N;\Delta \vdash choose \{ \overrightarrow{ \ p \longrightarrow i \ } \} \rightarrow N;G;S;(noop;i_k)::E \vdash p_k $}
+\UnaryInfC{$N;\Delta \vdash choose \{ \overrightarrow{ \ p \longrightarrow i \ } \} \rightarrow N;G;S;(i_k)::E \vdash p_k $}
 \end{prooftree}
 
 \newpage
